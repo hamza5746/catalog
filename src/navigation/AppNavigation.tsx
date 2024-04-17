@@ -15,7 +15,6 @@ const Stack = createNativeStackNavigator();
 const SCREENS = {
   [KeyUtils.routes.drawer]: { screen: Drawer },
   [KeyUtils.routes.detailAnime]: { screen: DetailAnime },
-  
 };
 
 export const AppNavigation = () => {
