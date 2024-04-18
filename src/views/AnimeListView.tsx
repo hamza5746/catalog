@@ -1,43 +1,62 @@
 import {StyleSheet, Text, View} from 'react-native';
-import React, {useEffect} from 'react';
-import {Button, IconButton, withTheme} from 'react-native-paper';
+import React from 'react';
+import {ActivityIndicator, Button, IconButton, withTheme} from 'react-native-paper';
 import {useFetchAnimeData} from '../services/anime.service';
 import {RAnimeItem} from '../services/response.interface';
 import KeyUtils from '../utilities/keyUtils';
 import { ScrollView } from 'react-native-gesture-handler';
+import AnimeItem from '../components/AnimeItem';
+import BottomTabs from '../components/BottomTabs';
+import { AnimStatus } from '../enums/anime';
+import ScreenLayout from '../Layouts/ScreenLayout';
 
 const AnimeListView = ({navigation}: any) => {
-  const {data, isLoading} = useFetchAnimeData();
+  
+  const [status, setStatus] = React.useState<AnimStatus>(AnimStatus.AIRING)
+
+  const {data, isLoading} = useFetchAnimeData({query:`status=${status}`,status:status});
 
   const detailButtonHandler = (id: number) => {
     navigation.navigate(KeyUtils.routes.detailAnime, {id: id});
   };
-
+  
+  const changeTab = (tab:AnimStatus) =>{
+    setStatus(tab);
+  }
   return (
-    <ScrollView>
+    
+    <ScreenLayout style={styles.container}>
       {isLoading ? (
-        <Text>Loading...</Text>
+        <ActivityIndicator animating={true} color='black'/>
       ) : data ? (
-        data.data.map((anime: RAnimeItem, index: number) => {
-          return (
-            <View key={anime.title + index} style={{borderBottomWidth: 2}}>
-              <Text>{anime.title}</Text>
-              <Text>{anime.year}</Text>
-              <Text>{anime.rating}</Text>
-              <Text>{anime.score}</Text>
-              <Button onPressOut={() => detailButtonHandler(anime.mal_id)}>
-                View more
-              </Button>
-            </View>
-          );
-        })
+        <>
+        <ScrollView>
+          <View style={{marginBottom:30}}>
+        {data.data?.map((anime: RAnimeItem, index: number) => {
+            return (
+              <AnimeItem key={anime.title + index} detailButtonHandler={detailButtonHandler} anime={anime} status={status}/>
+            );
+          })
+          }
+          </View>
+          </ScrollView>  
+          <BottomTabs changeTab={changeTab}/>
+          </>
+        
       ) : (
         <Text>Not Found</Text>
-      )}
-      <Text>AnimeListView</Text>
-    </ScrollView>
+      )
+  }
+      </ScreenLayout>
+      
+    
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingTop: 20,
+  },
+});
 export default withTheme(AnimeListView);

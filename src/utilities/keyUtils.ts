@@ -3,6 +3,6 @@ export default class KeyUtils {
         drawer: "Drawer",
         animeListView: "Anime List View",
         favoritesView: "Favorites View",
-        detailAnime: "Anime Detail"
+        detailAnime: "detailAnime"
     }
 }

@@ -10,7 +10,13 @@ import { IconButton } from "react-native-paper";
 import Drawer from "./Drawer";
 import DetailAnime from "../views/DetailAnime";
 
-const Stack = createNativeStackNavigator();
+type RootStackParamList = {
+  drawer:undefined;
+  animeListView: undefined;
+  favoritesView: undefined;
+  detailAnime:{id:number};
+};
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const SCREENS = {
   [KeyUtils.routes.drawer]: { screen: Drawer },
@@ -22,9 +28,23 @@ export const AppNavigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName={KeyUtils.routes.drawer as keyof AppStackParams}
+        initialRouteName={'drawer'}
       >
-        {Object.entries(SCREENS).map((screen) => {
+          <Stack.Screen
+              name={'drawer'}
+              component={Drawer}
+              options={{
+                headerShown: false,
+              }}
+          />   
+          <Stack.Screen
+              name={'detailAnime'}
+              component={DetailAnime}
+              options={{
+                headerShown: false,
+              }}
+          />   
+        {/* {Object.entries(SCREENS).map((screen) => {
           const [key, value] = screen;
           return (
             <Stack.Screen
@@ -36,7 +56,7 @@ export const AppNavigation = () => {
               }}
             />
           );
-        })}
+        })} */}
       </Stack.Navigator>
     </NavigationContainer>
   );
