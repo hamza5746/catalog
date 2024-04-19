@@ -106,7 +106,7 @@ export function useRefreshOnFocus<T>(refetch: () => Promise<T>) {
 
 export default connector(DetailAnime);
 const styles = StyleSheet.create({
-  textStyle:{
-    color:'black',
-  }
+  textStyle: {
+    color: 'black',
+  },
 });
