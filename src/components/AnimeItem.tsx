@@ -15,20 +15,20 @@ const AnimeItem = React.memo(({
 }: IAnimeItem) =>{
   return (
     <View style={{borderBottomWidth: 2}}>
-      <Text>{anime.title}</Text>
+      <Text>{anime?.title}</Text>
       <Image
         style={{
         width: 50,
         height:50,
         backgroundColor: "pink"
       }}
-        source={{ uri: anime.images.jpg.image_url }}
+        source={{ uri: anime?.images?.jpg?.image_url }}
       />
       {!status || status !== 'upcoming' ?
         <>
-          <Text>{anime.year}</Text>
-          <Text>{anime.rating}</Text>
-          <Text>{anime.score}</Text>
+          <Text>{anime?.year}</Text>
+          <Text>{anime?.rating}</Text>
+          <Text>{anime?.score}</Text>
         </>
       : null}
       <Button onPressOut={() => detailButtonHandler(anime.mal_id)}>

@@ -21,11 +21,12 @@ const FavoritesView:FC<PropsFromRedux & FavoriteListProps> = ({favorites,navigat
   const detailButtonHandler = (id: number) => {
     navigation.navigate(KeyUtils.routes.detailAnime, {id: id});
   };
+  console.log('favorites',favorites);
   return (
     <View>
       {favorites.map((anime: RAnimeItem, index: number) => {
           return (
-            <AnimeItem key={anime.title + index} detailButtonHandler={detailButtonHandler} anime={anime} />
+            <AnimeItem key={anime?.title + index} detailButtonHandler={detailButtonHandler} anime={anime} />
           );
         })}
     </View>

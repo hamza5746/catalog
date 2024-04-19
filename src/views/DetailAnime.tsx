@@ -11,6 +11,7 @@ import {RootState} from '../redux/store';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {addToFavorites, removeFromFavorites} from '../redux/actions';
 import {TouchableOpacity} from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 
 
 
@@ -35,14 +36,14 @@ const DetailAnime: FC<PropsFromRedux & Props> = ({
 }) => {
   const {id} = route.params;
   const {isLoading, data, refetch} = useFetchAnimeWithId(id);
-  const isFavorite = favorites.some((favItem:RAnimeItem) => favItem.mal_id === id);
+  const isFavorite = favorites.some((favItem:RAnimeItem) => favItem?.mal_id === id);
   useRefreshOnFocus(refetch);
 
   const toggleFavorite = () => {
     if (isFavorite) {
       removeFromFavorites(id);
     } else {
-      addToFavorites(data.data);
+      addToFavorites(data);
     }
   };
 
@@ -68,15 +69,15 @@ const DetailAnime: FC<PropsFromRedux & Props> = ({
                   source={{ uri: data.images.jpg.image_url }}
                 />
                 </View>
-                <Text>{data.title}</Text>
-                <Text>{data.year}</Text>
-                <Text>{data.rating}</Text>
-                <Text>{data.score}</Text>
-                <Text>{data.synopsis}</Text>
+                <Text>{data?.title}</Text>
+                <Text>{data?.year}</Text>
+                <Text>{data?.rating}</Text>
+                <Text>{data?.score}</Text>
+                
               </View>
               <View style={{marginRight: 10}}>
                 <TouchableOpacity onPress={toggleFavorite}>
-                  <HeartIcons color={isFavorite ? "#f80000" : "#ffffff"} />
+                  <HeartIcons color={isFavorite ? "#f80000" : "#fffdf4"} />
                 </TouchableOpacity>
               </View>
             </View>
