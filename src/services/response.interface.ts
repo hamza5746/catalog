@@ -12,7 +12,7 @@ export interface RAnimeItemDetails extends RAnimeItem {
 }
 
 export interface AnimeItemImage {
-    webp: Image
+    jpg: Image
     
 }
 

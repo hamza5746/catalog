@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {RAnimeItem} from '../services/response.interface';
 import {Button} from 'react-native-paper';
@@ -16,6 +16,14 @@ const AnimeItem = React.memo(({
   return (
     <View style={{borderBottomWidth: 2}}>
       <Text>{anime.title}</Text>
+      <Image
+        style={{
+        width: 50,
+        height:50,
+        backgroundColor: "pink"
+      }}
+        source={{ uri: anime.images.jpg.image_url }}
+      />
       {!status || status !== 'upcoming' ?
         <>
           <Text>{anime.year}</Text>

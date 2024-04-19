@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, Text, View} from 'react-native';
 import React, {FC} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {ActivityIndicator, Button} from 'react-native-paper';
@@ -36,7 +36,6 @@ const DetailAnime: FC<PropsFromRedux & Props> = ({
   const {id} = route.params;
   const {isLoading, data, refetch} = useFetchAnimeWithId(id);
   const isFavorite = favorites.some((favItem:RAnimeItem) => favItem.mal_id === id);
-
   useRefreshOnFocus(refetch);
 
   const toggleFavorite = () => {
@@ -59,6 +58,16 @@ const DetailAnime: FC<PropsFromRedux & Props> = ({
           ) : data ? (
             <View style={{display: 'flex', flexDirection: 'row'}}>
               <View style={{flexGrow: 1}}>
+                <View>
+                <Image
+                 style={{
+                  width: 300,
+                  height:300,
+                  backgroundColor: "pink"
+                }}
+                  source={{ uri: data.images.jpg.image_url }}
+                />
+                </View>
                 <Text>{data.title}</Text>
                 <Text>{data.year}</Text>
                 <Text>{data.rating}</Text>
