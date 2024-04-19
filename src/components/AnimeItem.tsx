@@ -8,11 +8,11 @@ interface IAnimeItem {
   detailButtonHandler: (id: number) => void;
   status?: 'upcoming' | 'complete' | 'airing';
 }
-export default function AnimeItem({
+const AnimeItem = React.memo(({
   anime,
   detailButtonHandler,
   status,
-}: IAnimeItem) {
+}: IAnimeItem) =>{
   return (
     <View style={{borderBottomWidth: 2}}>
       <Text>{anime.title}</Text>
@@ -28,6 +28,8 @@ export default function AnimeItem({
       </Button>
     </View>
   );
-}
+})
 
 const styles = StyleSheet.create({});
+
+export default AnimeItem;

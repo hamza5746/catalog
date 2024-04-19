@@ -7,6 +7,10 @@ export interface RAnimeItem{
     images: AnimeItemImage
 }
 
+export interface RAnimeItemDetails extends RAnimeItem {
+    synopsis:string
+}
+
 export interface AnimeItemImage {
     webp: Image
     

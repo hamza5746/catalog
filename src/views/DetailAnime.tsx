@@ -59,10 +59,11 @@ const DetailAnime: FC<PropsFromRedux & Props> = ({
           ) : data ? (
             <View style={{display: 'flex', flexDirection: 'row'}}>
               <View style={{flexGrow: 1}}>
-                <Text>{data.data.title}</Text>
-                <Text>{data.data.year}</Text>
-                <Text>{data.data.rating}</Text>
-                <Text>{data.data.score}</Text>
+                <Text>{data.title}</Text>
+                <Text>{data.year}</Text>
+                <Text>{data.rating}</Text>
+                <Text>{data.score}</Text>
+                <Text>{data.synopsis}</Text>
               </View>
               <View style={{marginRight: 10}}>
                 <TouchableOpacity onPress={toggleFavorite}>
