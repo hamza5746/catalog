@@ -6,8 +6,8 @@ export default function BottomTabs({changeTab}:{changeTab:(tab:AnimStatus)=>void
     const [selectedTab, setSelectedTab] = useState<AnimStatus>(AnimStatus.AIRING);
 
     const handleTabPress = (tab:AnimStatus) => {
-      setSelectedTab(tab);
       changeTab(tab)
+      setSelectedTab(tab);
       
       // Perform filtering based on the selected tab
       // For example, update state to filter the list based on tab
@@ -67,5 +67,6 @@ const styles = StyleSheet.create({
       },
       tabText: {
         fontSize: 16,
+        color:'black'
       },
   });

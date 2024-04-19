@@ -67,9 +67,9 @@ const detailButtonHandler = (id: number) => {
   return (
     <ScreenLayout style={styles.container}>
       <SearchAnime onChangeValueHandler={onChangeValueHandler}/>
-      {isFetching ? (
+      {isLoading ? (
         <ActivityIndicator animating={true} color="black" />
-      ) : data?.pages ? (
+      ) : data?.pages.length ? (
         <>
           <View>
               <FlatList
@@ -78,16 +78,15 @@ const detailButtonHandler = (id: number) => {
                 style={{marginBottom: 60}}
                 onEndReached={loadMore}
                 onEndReachedThreshold={0.8}
-                ListFooterComponent={isFetchingNextPage ? <ActivityIndicator /> : null}
-                
               />
             </View>
           
-          <BottomTabs changeTab={changeTab} />
+          
         </>
       ) : (
         <Text>Not Found</Text>
       )}
+      <BottomTabs changeTab={changeTab} />
     </ScreenLayout>
   );
 };

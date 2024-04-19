@@ -15,12 +15,10 @@ const fetchAnimePageAmimatedList = async (pageParam:number,query?:string) => {
   const response = await axios.get(
     `${API_BASE_URL}${apiPath.AnimeList}?page=${pageParam}${query ? '&' + query : ''}`,
   );
-  console.log('=========>pl',response.data);
   return response;
 };
 
 const fetchAnimeById = async (id: number) => {
-  console.log('id', id);
   const response = await axios.get(`${API_BASE_URL}${apiPath.AnimeList}/${id}`);
   return response.data.data;
 };

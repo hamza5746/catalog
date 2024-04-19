@@ -9,5 +9,3 @@ export default function HeartIcons({color='#1C274C'}:{color:string}) {
     </Svg>
   )
 }
-
-const styles = StyleSheet.create({})

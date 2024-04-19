@@ -11,9 +11,7 @@ import {RootState} from '../redux/store';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {addToFavorites, removeFromFavorites} from '../redux/actions';
 import {TouchableOpacity} from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
-
-
+import {ScrollView} from 'react-native-gesture-handler';
 
 const mapStateToProps = (state: RootState) => ({
   favorites: state.favorites.favorites,
@@ -36,7 +34,9 @@ const DetailAnime: FC<PropsFromRedux & Props> = ({
 }) => {
   const {id} = route.params;
   const {isLoading, data, refetch} = useFetchAnimeWithId(id);
-  const isFavorite = favorites.some((favItem:RAnimeItem) => favItem?.mal_id === id);
+  const isFavorite = favorites.some(
+    (favItem: RAnimeItem) => favItem?.mal_id === id,
+  );
   useRefreshOnFocus(refetch);
 
   const toggleFavorite = () => {
@@ -55,29 +55,28 @@ const DetailAnime: FC<PropsFromRedux & Props> = ({
         </Button>
         <View style={{marginTop: 10}}>
           {isLoading ? (
-            <ActivityIndicator animating={true} color='black'/>
+            <ActivityIndicator animating={true} color="black" />
           ) : data ? (
             <View style={{display: 'flex', flexDirection: 'row'}}>
               <View style={{flexGrow: 1}}>
                 <View>
-                <Image
-                 style={{
-                  width: 300,
-                  height:300,
-                  backgroundColor: "pink"
-                }}
-                  source={{ uri: data.images.jpg.image_url }}
-                />
+                  <Image
+                    style={{
+                      width: 300,
+                      height: 300,
+                      backgroundColor: 'pink',
+                    }}
+                    source={{uri: data.images.jpg.image_url}}
+                  />
                 </View>
-                <Text>{data?.title}</Text>
-                <Text>{data?.year}</Text>
-                <Text>{data?.rating}</Text>
-                <Text>{data?.score}</Text>
-                
+                <Text style={styles.textStyle}>{data.title}</Text>
+                <Text style={styles.textStyle}>{data.year}</Text>
+                <Text style={styles.textStyle}>{data.rating}</Text>
+                <Text style={styles.textStyle}>{data.score}</Text>
               </View>
               <View style={{marginRight: 10}}>
                 <TouchableOpacity onPress={toggleFavorite}>
-                  <HeartIcons color={isFavorite ? "#f80000" : "#fffdf4"} />
+                  <HeartIcons color={isFavorite ? '#f80000' : '#fffdf4'} />
                 </TouchableOpacity>
               </View>
             </View>
@@ -106,4 +105,8 @@ export function useRefreshOnFocus<T>(refetch: () => Promise<T>) {
 }
 
 export default connector(DetailAnime);
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  textStyle:{
+    color:'black',
+  }
+});

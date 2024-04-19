@@ -14,30 +14,39 @@ const AnimeItem = React.memo(({
   status,
 }: IAnimeItem) =>{
   return (
-    <View style={{borderBottomWidth: 2}}>
-      <Text>{anime?.title}</Text>
-      <Image
-        style={{
-        width: 50,
-        height:50,
-        backgroundColor: "pink"
-      }}
-        source={{ uri: anime?.images?.jpg?.image_url }}
-      />
-      {!status || status !== 'upcoming' ?
-        <>
-          <Text>{anime?.year}</Text>
-          <Text>{anime?.rating}</Text>
-          <Text>{anime?.score}</Text>
-        </>
-      : null}
-      <Button onPressOut={() => detailButtonHandler(anime.mal_id)}>
-        View more
-      </Button>
+    <View style={{borderBottomWidth: 2, paddingTop:10, display:'flex',flexDirection:'row'}}>
+      <View style={{flexGrow:1}}>
+        <Text style={styles.textStyle}>{anime?.title}</Text>
+        <Image
+          style={{
+          width: 50,
+          height:50,
+          backgroundColor: "pink"
+        }}
+          source={{ uri: anime?.images?.jpg?.image_url }}
+        />
+        {!status || status !== 'upcoming' && anime ?
+          <>
+            <Text style={styles.textStyle}>{anime.year}</Text>
+            <Text style={styles.textStyle}>{anime.rating}</Text>
+            <Text style={styles.textStyle}>{anime.score}</Text>
+          </>
+        : null}
+      </View>
+      <View>
+        <Button mode="outlined" onPressOut={() => detailButtonHandler(anime.mal_id)}>
+          View more
+        </Button>
+      </View>
     </View>
   );
 })
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  textStyle:{
+    color:'black',
+    width:220
+  }
+});
 
 export default AnimeItem;

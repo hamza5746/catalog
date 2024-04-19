@@ -1,6 +1,6 @@
 import { View, Text } from 'react-native'
 import React from 'react'
-import { Searchbar } from 'react-native-paper';
+import { Searchbar, shadow } from 'react-native-paper';
 import SearchBarIcon from '../assets//WrapperIcons/SearchBarIcon';
 
 const SearchAnime = ({onChangeValueHandler}:{onChangeValueHandler:(val:string)=>void}) => {
@@ -16,7 +16,10 @@ const SearchAnime = ({onChangeValueHandler}:{onChangeValueHandler:(val:string)=>
         onChangeText={(val)=>searchItem(val)}
         value={searchQuery}
         style={{
-          backgroundColor:'transparent'
+          backgroundColor:'#fffdf4',
+          shadowRadius:5,
+          borderRadius:5,
+          borderColor:'black'
         }}
       />
     );
