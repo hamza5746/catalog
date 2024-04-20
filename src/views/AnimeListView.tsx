@@ -17,6 +17,8 @@ import ScreenLayout from '../Layouts/ScreenLayout';
 import ListView from '../components/ListView';
 import SearchAnime from '../components/SearchAnime';
 import {debounce} from '../utilities/utils/debounce';
+import BigList from 'react-native-big-list';
+import EmptyComponent from '../components/EmptyComponent';
 
 const AnimeListView = ({navigation}: any) => {
   const [status, setStatus] = useState<AnimStatus>(AnimStatus.AIRING);
@@ -78,7 +80,9 @@ const AnimeListView = ({navigation}: any) => {
               style={{marginBottom: 60}}
               onEndReached={loadMore}
               onEndReachedThreshold={0.8}
+              ListEmptyComponent={EmptyComponent}
             />
+            
           </View>
         </>
       ) : (

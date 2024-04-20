@@ -5,12 +5,8 @@
  * @format
  */
 
-import React, { useState } from 'react';
-import {
-  useColorScheme,
-} from 'react-native';
+import React from 'react';
 
-import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {AppNavigation} from './src/navigation/AppNavigation';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {PaperProvider} from 'react-native-paper';

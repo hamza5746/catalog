@@ -2,13 +2,12 @@ import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {Path, Svg} from 'react-native-svg';
 
-export default function HeartIcons({color = '#1C274C'}: {color: string}) {
+export default function HeartIcons({color = '#ffff'}: {color: string}) {
   return (
-    <Svg width="50px" height="50px" viewBox="0 0 24 24" fill="none">
-      <Path
-        d="M2 9.1371C2 14 6.01943 16.5914 8.96173 18.9109C10 19.7294 11 20.5 12 20.5C13 20.5 14 19.7294 15.0383 18.9109C17.9806 16.5914 22 14 22 9.1371C22 4.27416 16.4998 0.825464 12 5.50063C7.50016 0.825464 2 4.27416 2 9.1371Z"
-        fill={color}
-      />
+    <Svg width="50px" height="50px" viewBox="0 0 24 24" fill={color}>
+      <Path fill-rule="evenodd" clip-rule="evenodd" d="M12 6.00019C10.2006 3.90317 7.19377 3.2551 4.93923 5.17534C2.68468 7.09558 2.36727 10.3061 4.13778 12.5772C5.60984 14.4654 10.0648 18.4479 11.5249 19.7369C11.6882 19.8811 11.7699 19.9532 11.8652 19.9815C11.9483 20.0062 12.0393 20.0062 12.1225 19.9815C12.2178 19.9532 12.2994 19.8811 12.4628 19.7369C13.9229 18.4479 18.3778 14.4654 19.8499 12.5772C21.6204 10.3061 21.3417 7.07538 19.0484 5.17534C16.7551 3.2753 13.7994 3.90317 12 6.00019Z" stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
     </Svg>
+    
+    
   );
 }

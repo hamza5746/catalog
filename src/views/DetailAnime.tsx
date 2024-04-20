@@ -1,7 +1,7 @@
 import {Image, StyleSheet, Text, View} from 'react-native';
 import React, {FC} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {ActivityIndicator, Button} from 'react-native-paper';
+import {ActivityIndicator, Button, IconButton} from 'react-native-paper';
 import {useFetchAnimeWithId} from '../services/anime.service';
 import {useFocusEffect} from '@react-navigation/native';
 import HeartIcons from '../assets/WrapperIcons/HeartIcons';
@@ -12,6 +12,8 @@ import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {addToFavorites, removeFromFavorites} from '../redux/actions';
 import {TouchableOpacity} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
+import BackIcon from '../assets/WrapperIcons/BackIcon';
+import ScreenLayout from '../Layouts/ScreenLayout';
 
 const mapStateToProps = (state: RootState) => ({
   favorites: state.favorites.favorites,
@@ -49,10 +51,11 @@ const DetailAnime: FC<PropsFromRedux & Props> = ({
 
   return (
     <SafeAreaView>
-      <View>
-        <Button mode="outlined" onPressOut={() => navigation.goBack()}>
-          Back
-        </Button>
+
+      <ScreenLayout>
+        <IconButton onPressOut={() => navigation.goBack()} icon={()=><BackIcon/>}>
+          
+        </IconButton>
         <View style={{marginTop: 10}}>
           {isLoading ? (
             <ActivityIndicator animating={true} color="black" />
@@ -84,7 +87,7 @@ const DetailAnime: FC<PropsFromRedux & Props> = ({
             <Text>Not Found</Text>
           )}
         </View>
-      </View>
+      </ScreenLayout>
     </SafeAreaView>
   );
 };

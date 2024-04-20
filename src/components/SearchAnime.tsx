@@ -2,6 +2,7 @@ import {View, Text} from 'react-native';
 import React from 'react';
 import {Searchbar, shadow} from 'react-native-paper';
 import SearchBarIcon from '../assets//WrapperIcons/SearchBarIcon';
+import CrossIcon from '../assets/WrapperIcons/CrossIcon';
 
 const SearchAnime = ({
   onChangeValueHandler,
@@ -25,6 +26,9 @@ const SearchAnime = ({
         borderRadius: 5,
         borderColor: 'black',
       }}
+      icon={({color,size})=><SearchBarIcon/>}
+      clearIcon={()=><CrossIcon/>}
+      
     />
   );
 };
